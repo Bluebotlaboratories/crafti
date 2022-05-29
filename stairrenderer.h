@@ -24,13 +24,13 @@ public:
     virtual const char* getName(const BLOCK_WDATA) override;
 
 protected:
-    const TerrainAtlasEntry getStairTexture(const BLOCK_WDATA block);
+    const TerrainAtlasEntry &getStairTexture(const BLOCK_WDATA block);
 
     static constexpr GLFix stair_height = BLOCK_SIZE / 16 * 8;
     static constexpr GLFix stair_width = BLOCK_SIZE;
 
     /// Bitmap stuff
-    static constexpr uint8_t stair_bit_shift = 3; // The amount to shift cake data by to give it room for the orientation or other additional data
+    static constexpr uint8_t stair_bit_shift = 4; // The amount to shift cake data by to give it room for the orientation or other additional data
     static constexpr uint8_t stair_data_bits = 0b111 << stair_bit_shift; // Stairs use 3 bits of data, however, orientation data is stored in the first three bits, so the cake data has to be shifted by 3 (or more)
 
     enum STAIR_TYPE {
