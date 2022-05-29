@@ -24,7 +24,7 @@ public:
     virtual const char* getName(const BLOCK_WDATA) override;
 
 protected:
-    const TerrainAtlasEntry &getStairTexture(const BLOCK_WDATA block);
+    TerrainAtlasEntry &getStairTexture(const BLOCK_WDATA block);
 
     static constexpr GLFix stair_height = BLOCK_SIZE / 16 * 8;
     static constexpr GLFix stair_width = BLOCK_SIZE;
