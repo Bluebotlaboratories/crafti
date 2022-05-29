@@ -10,13 +10,16 @@ public:
     virtual void geometryNormalBlock(const BLOCK_WDATA, const int local_x, const int local_y, const int local_z, const BLOCK_SIDE side, Chunk &c) override;
     virtual bool isOpaque(const BLOCK_WDATA /*block*/) override { return false; }
     virtual bool isObstacle(const BLOCK_WDATA /*block*/) override { return true; }
-    virtual bool isOriented(const BLOCK_WDATA /*block*/) override { return true; } // Not oriented (for extra data)
+    virtual bool isOriented(const BLOCK_WDATA /*block*/) override { return false; } // Not oriented (for extra data)
     virtual bool isFullyOriented(const BLOCK_WDATA /*block*/) override { return false; } // Torch-like orientation
 
     virtual bool isBlockShaped(const BLOCK_WDATA /*block*/) override { return false; }
     virtual AABB getAABB(const BLOCK_WDATA, GLFix x, GLFix y, GLFix z) override;
 
     virtual void drawPreview(const BLOCK_WDATA block, TEXTURE &dest, int x, int y) override;
+
+    virtual void addedBlock(const BLOCK_WDATA block, int local_x, int local_y, int local_z, Chunk &c) override;
+
 
     // Used for particles spawned on destruction
     virtual const TerrainAtlasEntry &destructionTexture(const BLOCK_WDATA block) override;
