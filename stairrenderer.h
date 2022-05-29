@@ -17,7 +17,7 @@ public:
     virtual AABB getAABB(const BLOCK_WDATA, GLFix x, GLFix y, GLFix z) override;
 
     virtual void drawPreview(const BLOCK_WDATA block, TEXTURE &dest, int x, int y) override;
-    
+
     // Used for particles spawned on destruction
     virtual const TerrainAtlasEntry &destructionTexture(const BLOCK_WDATA block) override;
 
@@ -32,9 +32,6 @@ protected:
     /// Bitmap stuff
     static constexpr uint8_t stair_bit_shift = 3; // The amount to shift cake data by to give it room for the orientation or other additional data
     static constexpr uint8_t stair_data_bits = 0b1111 << stair_bit_shift; // Cake uses 3 bits of data, however, orientation data is stored in the first three bits, so the cake data has to be shifted by 3 (or more)
-
-    static constexpr uint8_t stair_max_bites = 6; // Maximum bites of cake you can have until it is eaten (after 4 bites, cake will dissapear)
-
 
     enum STAIR_TYPE {
         STAIR_STONE=0,
