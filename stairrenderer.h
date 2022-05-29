@@ -17,9 +17,7 @@ public:
     virtual AABB getAABB(const BLOCK_WDATA, GLFix x, GLFix y, GLFix z) override;
 
     virtual void drawPreview(const BLOCK_WDATA block, TEXTURE &dest, int x, int y) override;
-
-    virtual void addedBlock(const BLOCK_WDATA block, int local_x, int local_y, int local_z, Chunk &c) override;
-
+    
     // Used for particles spawned on destruction
     virtual const TerrainAtlasEntry &destructionTexture(const BLOCK_WDATA block) override;
 

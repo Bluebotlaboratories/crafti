@@ -4,7 +4,7 @@ constexpr GLFix StairRenderer::stair_height, StairRenderer::stair_width;
 
 // Get stair texture
 const TerrainAtlasEntry &StairRenderer::getStairTexture(const BLOCK_WDATA block) {
-    switch (static_cast<STAIR_TYPE>(getBLOCKDATA(block))) {
+    switch (static_cast<STAIR_TYPE>((getBLOCKDATA(block) & stair_data_bits) >> stair_bit_shift)) {
         default:
             return terrain_atlas[6][12];
             break;
@@ -34,47 +34,6 @@ const TerrainAtlasEntry &StairRenderer::getStairTexture(const BLOCK_WDATA block)
 
 const TerrainAtlasEntry &StairRenderer::destructionTexture(const BLOCK_WDATA block) {
     return getStairTexture(block);
-}
-
-void StairRenderer::addedBlock(const BLOCK_WDATA block, int local_x, int local_y, int local_z, Chunk &c) {
-    if (getBLOCKDATA(c.getGlobalBlockRelative(local_x, local_y - 1, local_z)) == getBLOCKDATA(block)) {
-        // Remove stair
-        c.changeLocalBlock(local_x, local_y, local_z, getBLOCK(BLOCK_AIR));
-
-        // Define variable
-        BLOCK fullStairBlock;
-
-        // Get block from stair type
-        switch (static_cast<STAIR_TYPE>(getBLOCKDATA(block))) {
-            default:
-                fullStairBlock = getBLOCK(BLOCK_PLANKS_DARK);
-                break;
-            case STAIR_STONE:
-                fullStairBlock = getBLOCK(BLOCK_STONE);
-                break;
-            case STAIR_PLANKS_NORMAL:
-                fullStairBlock = getBLOCK(BLOCK_PLANKS_NORMAL);
-                break;
-            case STAIR_WALL:
-                fullStairBlock = getBLOCK(BLOCK_WALL);
-                break;
-            case STAIR_PLANKS_DARK:
-                fullStairBlock = getBLOCK(BLOCK_PLANKS_DARK);
-                break;
-            case STAIR_PLANKS_BRIGHT:
-                fullStairBlock = getBLOCK(BLOCK_PLANKS_BRIGHT);
-                break;
-            case STAIR_COBBLESTONE:
-                fullStairBlock = getBLOCK(BLOCK_COBBLESTONE);
-                break;
-            case STAIR_NETHERRACK:
-                fullStairBlock = getBLOCK(BLOCK_NETHERRACK);
-                break;
-        }
-
-        // Set block to stair block type
-        c.setGlobalBlockRelative(local_x, local_y - 1, local_z, fullStairBlock);
-    }
 }
 
 void StairRenderer::renderSpecialBlock(const BLOCK_WDATA block, GLFix x, GLFix y, GLFix z, Chunk &c)
@@ -234,7 +193,7 @@ void StairRenderer::drawPreview(const BLOCK_WDATA block, TEXTURE &dest, int x, i
 
 const char *StairRenderer::getName(const BLOCK_WDATA block)
 {
-    switch (static_cast<STAIR_TYPE>(getBLOCKDATA(block))) {
+    switch (static_cast<STAIR_TYPE>((getBLOCKDATA(block) & stair_data_bits) >> stair_bit_shift)) {
         default:
             return "Stairs";
             break;
