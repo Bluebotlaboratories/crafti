@@ -64,7 +64,8 @@ constexpr BLOCK BLOCK_WOOL = 141; // Data: Colour
 constexpr BLOCK BLOCK_SLAB = 142;
 constexpr BLOCK BLOCK_CACTUS = 143;
 constexpr BLOCK BLOCK_CARPET = 144;
-constexpr BLOCK BLOCK_SPECIAL_LAST = BLOCK_CARPET;
+constexpr BLOCK BLOCK_STAIRS = 145;
+constexpr BLOCK BLOCK_SPECIAL_LAST = BLOCK_STAIRS;
 
 
 constexpr uint8_t RANGE_WATER = 5;

@@ -19,6 +19,7 @@
 #include "slabrenderer.h"
 #include "cactusrenderer.h"
 #include "carpetrenderer.h"
+#include "stairrenderer.h"
 
 UniversalBlockRenderer global_block_renderer;
 
@@ -388,6 +389,7 @@ UniversalBlockRenderer::UniversalBlockRenderer()
     map[BLOCK_SLAB] = std::make_shared<SlabRenderer>();
     map[BLOCK_CACTUS] = std::make_shared<CactusRenderer>();
     map[BLOCK_CARPET] = std::make_shared<CarpetRenderer>();
+    map[BLOCK_STAIRS] = std::make_shared<StairRenderer>();
     
     auto flower_renderer = std::make_shared<BillboardRenderer>();
     flower_renderer->setEntry(0, 12, 0, "Red flower", BLOCK_SIZE, BLOCK_SIZE/2, BLOCK_SIZE);
