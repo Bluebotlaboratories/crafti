@@ -10,7 +10,7 @@ public:
     virtual void geometryNormalBlock(const BLOCK_WDATA, const int local_x, const int local_y, const int local_z, const BLOCK_SIDE side, Chunk &c) override;
     virtual bool isOpaque(const BLOCK_WDATA /*block*/) override { return false; }
     virtual bool isObstacle(const BLOCK_WDATA /*block*/) override { return true; }
-    virtual bool isOriented(const BLOCK_WDATA /*block*/) override { return true; } // Not oriented (for extra data)
+    virtual bool isOriented(const BLOCK_WDATA /*block*/) override { return false; } // Not oriented (for extra data)
     virtual bool isFullyOriented(const BLOCK_WDATA /*block*/) override { return false; } // Torch-like orientation
 
     virtual bool isBlockShaped(const BLOCK_WDATA /*block*/) override { return false; }
@@ -18,20 +18,23 @@ public:
 
     virtual void drawPreview(const BLOCK_WDATA block, TEXTURE &dest, int x, int y) override;
 
+    virtual void addedBlock(const BLOCK_WDATA block, int local_x, int local_y, int local_z, Chunk &c) override;
+
+
     // Used for particles spawned on destruction
     virtual const TerrainAtlasEntry &destructionTexture(const BLOCK_WDATA block) override;
 
     virtual const char* getName(const BLOCK_WDATA) override;
 
 protected:
-    TerrainAtlasEntry &getStairTexture(const BLOCK_WDATA block);
+    const TerrainAtlasEntry &getStairTexture(const BLOCK_WDATA block);
 
     static constexpr GLFix stair_height = BLOCK_SIZE / 16 * 8;
     static constexpr GLFix stair_width = BLOCK_SIZE;
 
     /// Bitmap stuff
-    static constexpr uint8_t stair_bit_shift = 4; // The amount to shift cake data by to give it room for the orientation or other additional data
-    static constexpr uint8_t stair_data_bits = 0b111 << stair_bit_shift; // Stairs use 3 bits of data, however, orientation data is stored in the first three bits, so the cake data has to be shifted by 3 (or more)
+    static constexpr uint8_t stair_bit_shift = 3; // The amount to shift cake data by to give it room for the orientation or other additional data
+    static constexpr uint8_t stair_data_bits = 0b111 << stair_bit_shift; // Cake uses 3 bits of data, however, orientation data is stored in the first three bits, so the cake data has to be shifted by 3 (or more)
 
     enum STAIR_TYPE {
         STAIR_STONE=0,

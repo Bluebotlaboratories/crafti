@@ -3,7 +3,7 @@
 constexpr GLFix StairRenderer::stair_height, StairRenderer::stair_width;
 
 // Get stair texture
-TerrainAtlasEntry &StairRenderer::getStairTexture(const BLOCK_WDATA block) {
+const TerrainAtlasEntry &StairRenderer::getStairTexture(const BLOCK_WDATA block) {
     switch (static_cast<STAIR_TYPE>((getBLOCKDATA(block) & stair_data_bits) >> stair_bit_shift)) {
         default:
             return terrain_atlas[6][12];
@@ -36,8 +36,14 @@ const TerrainAtlasEntry &StairRenderer::destructionTexture(const BLOCK_WDATA blo
     return getStairTexture(block);
 }
 
+void StairRenderer::addedBlock(const BLOCK_WDATA block, int local_x, int local_y, int local_z, Chunk &c) {
+    // Set block to stair block type
+    c.setGlobalBlockRelative(local_x, local_y, local_z, getBLOCKWDATA(BLOCK_STAIRS, getBLOCKDATA(block)));
+}
+
 void StairRenderer::renderSpecialBlock(const BLOCK_WDATA block, GLFix x, GLFix y, GLFix z, Chunk &c)
 {
+
     const TextureAtlasEntry &stair_top = getStairTexture(block).current;
     TextureAtlasEntry stair_sid = getStairTexture(block).current;
 
