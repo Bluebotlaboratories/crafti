@@ -10,7 +10,7 @@ public:
     virtual void geometryNormalBlock(const BLOCK_WDATA, const int local_x, const int local_y, const int local_z, const BLOCK_SIDE side, Chunk &c) override;
     virtual bool isOpaque(const BLOCK_WDATA /*block*/) override { return false; }
     virtual bool isObstacle(const BLOCK_WDATA /*block*/) override { return true; }
-    virtual bool isOriented(const BLOCK_WDATA /*block*/) override { return false; } // Not oriented (for extra data)
+    virtual bool isOriented(const BLOCK_WDATA /*block*/) override { return true; } // Not oriented (for extra data)
     virtual bool isFullyOriented(const BLOCK_WDATA /*block*/) override { return false; } // Torch-like orientation
 
     virtual bool isBlockShaped(const BLOCK_WDATA /*block*/) override { return false; }
