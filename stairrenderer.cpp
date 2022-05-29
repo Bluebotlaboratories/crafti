@@ -3,8 +3,8 @@
 constexpr GLFix StairRenderer::stair_height, StairRenderer::stair_width;
 
 // Get stair texture
-const TerrainAtlasEntry &StairRenderer::getStairTexture(const BLOCK_WDATA block) {
-    switch (static_cast<uint8_t>((getBLOCKDATA(block) & stair_data_bits) >> stair_bit_shift)) {
+const TerrainAtlasEntry StairRenderer::getStairTexture(const BLOCK_WDATA block) {
+    switch (static_cast<STAIR_TYPE>((getBLOCKDATA(block) & stair_data_bits) >> stair_bit_shift)) {
         default:
             return terrain_atlas[6][12];
             break;
