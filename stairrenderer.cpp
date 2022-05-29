@@ -38,7 +38,6 @@ const TerrainAtlasEntry &StairRenderer::destructionTexture(const BLOCK_WDATA blo
 
 void StairRenderer::renderSpecialBlock(const BLOCK_WDATA block, GLFix x, GLFix y, GLFix z, Chunk &c)
 {
-
     const TextureAtlasEntry &stair_top = getStairTexture(block).current;
     TextureAtlasEntry stair_sid = getStairTexture(block).current;
 
