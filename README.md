@@ -23,6 +23,12 @@ Then, simply locate the copied `crafti.tns` file on your calculator, and run it
 NOTE: Crafti requires a [jailbroken](http://ndless.me/) calculator to run and will not work without Ndless
 
 
+Textures
+--------
+You can use custom texture packs with Crafti! To learn how to do it and download the Crafti-specific texture format, simply view the following repo:
+https://github.com/Bluebotlaboratories/crafti-textures
+
+
 Controls
 --------
 
@@ -54,12 +60,10 @@ Menus can also be navigated with WASD
 
 ESC is still a shortcut for "Save & Exit"  
 
-
 Limitations
 -----------
 
 Crafti doesn't use floats, so there will be some graphical inaccuracies.
-
 
 Contributors
 -----------
@@ -90,7 +94,7 @@ Contributors
 </table>
 <!-- readme: contributors -end -->
   
-Textures from PureBDcraft ResourcePack by https://bdcraft.net, more info available in the [wiki](../../wiki/Crafti-textures)
+Textures from PureBDcraft resource packs by https://bdcraft.net, more info available in the [wiki](../../wiki/Crafti-textures)
 
 Development
 -----------
