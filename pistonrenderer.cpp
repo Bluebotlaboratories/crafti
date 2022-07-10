@@ -181,6 +181,7 @@ std::vector<VERTEX> PistonRenderer::get_piston_head_vertices(const PISTON_TYPE p
     const TextureAtlasEntry piston_side = terrain_atlas[12][6].current;
 
     TextureAtlasEntry piston_front = terrain_atlas[11][6].current;
+    TextureAtlasEntry piston_back = terrain_atlas[11][6].current;
     if (piston_type == STICKY_PISTON) {
         piston_front = terrain_atlas[10][6].current;
     }
@@ -200,10 +201,10 @@ std::vector<VERTEX> PistonRenderer::get_piston_head_vertices(const PISTON_TYPE p
     piston_vertices.push_back({BLOCK_SIZE, 0, 0, piston_front.right, piston_front.bottom, TEXTURE_TRANSPARENT});
 
     // Piston Back
-    piston_vertices.push_back({0, 0, piston_head_size, piston_front.left, piston_front.bottom, TEXTURE_TRANSPARENT});
-    piston_vertices.push_back({BLOCK_SIZE, 0, piston_head_size, piston_front.right, piston_front.bottom, TEXTURE_TRANSPARENT});
-    piston_vertices.push_back({BLOCK_SIZE, BLOCK_SIZE, piston_head_size, piston_front.right, piston_front.top, TEXTURE_TRANSPARENT});
-    piston_vertices.push_back({0, BLOCK_SIZE, piston_head_size, piston_front.left, piston_front.top, TEXTURE_TRANSPARENT});
+    piston_vertices.push_back({0, 0, piston_head_size, piston_back.left, piston_back.bottom, TEXTURE_TRANSPARENT});
+    piston_vertices.push_back({BLOCK_SIZE, 0, piston_head_size, piston_back.right, piston_back.bottom, TEXTURE_TRANSPARENT});
+    piston_vertices.push_back({BLOCK_SIZE, BLOCK_SIZE, piston_head_size, piston_back.right, piston_back.top, TEXTURE_TRANSPARENT});
+    piston_vertices.push_back({0, BLOCK_SIZE, piston_head_size, piston_back.left, piston_back.top, TEXTURE_TRANSPARENT});
 
     // Piston Bottom
     piston_vertices.push_back({0, 0, piston_head_size, piston_side.left, piston_head_bottom_texturemap, TEXTURE_TRANSPARENT});

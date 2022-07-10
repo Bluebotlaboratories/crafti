@@ -45,10 +45,10 @@ void BlockRenderer::renderNormalBlockSide(int local_x, int local_y, int local_z,
         c.setLocalBlockSideRendered(local_x, local_y, local_z, BLOCK_BACK_BIT);
         return;
     case BLOCK_RIGHT:
-        c.addAlignedVertex(local_x + 1, local_y, local_z, tex.right, tex.bottom, color);
-        c.addAlignedVertex(local_x + 1, local_y + 1, local_z, tex.right, tex.top, color);
-        c.addAlignedVertex(local_x + 1, local_y + 1, local_z + 1, tex.left, tex.top, color);
-        c.addAlignedVertex(local_x + 1, local_y, local_z + 1, tex.left, tex.bottom, color);
+        c.addAlignedVertex(local_x + 1, local_y, local_z, tex.left, tex.bottom, color);
+        c.addAlignedVertex(local_x + 1, local_y + 1, local_z, tex.left, tex.top, color);
+        c.addAlignedVertex(local_x + 1, local_y + 1, local_z + 1, tex.right, tex.top, color);
+        c.addAlignedVertex(local_x + 1, local_y, local_z + 1, tex.right, tex.bottom, color);
 
         c.setLocalBlockSideRendered(local_x, local_y, local_z, BLOCK_RIGHT_BIT);
         return;

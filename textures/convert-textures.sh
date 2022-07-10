@@ -8,10 +8,13 @@ read block_resolution
 
 echo "Block Resolution: "${block_resolution}
 
-let block_half_resolution=block_resolution/2 block_quarter_resolution=block_resolution/4
+let block_half_resolution=block_resolution/2 block_quarter_resolution=block_resolution/4 block_double_resolution=block_resolution*2 block_quad_resolution=block_resolution*4 doublequad_block_resolution=block_double_resolution+block_resolution
 
 echo "Block Half Resolution: "${block_half_resolution}
 echo "Block Quarter Resolution: "${block_quarter_resolution}
+echo "Block Double Resolution: "${block_double_resolution}
+echo "Block DoubleQuad Resolution: "${doublequad_block_resolution}
+echo "Block Quad Resolution: "${block_quad_resolution}
 
 rm -rf ./temp/
 mkdir temp
@@ -22,14 +25,14 @@ convert -composite ./assets/minecraft/textures/block/redstone_dust_line0.png ./t
 convert -composite ./temp/redstone_dust_lines.png ./assets/minecraft/textures/block/redstone_dust_dot.png ./temp/redstone_dust_lines.png
 
 # Redstone overlay fix
-convert -resize 32x32 ./assets/minecraft/textures/block/redstone_dust_overlay.png ./temp/redstone_dust_overlay.png
+convert -resize ${block_resolution}x${block_resolution} ./assets/minecraft/textures/block/redstone_dust_overlay.png ./temp/redstone_dust_overlay.png
 
 # Water Fix
-convert -crop 32x32+0+0 ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-0.png
-convert -crop 32x32+0+32 ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-1.png
-convert -crop 32x32+0+64 ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-2.png
-convert -crop 32x32+0+96 ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-3.png
-convert -crop 32x32+0+128 ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-4.png
+convert -crop ${block_resolution}x${block_resolution}+0+0 ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-0.png
+convert -crop ${block_resolution}x${block_resolution}+0+${block_resolution} ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-1.png
+convert -crop ${block_resolution}x${block_resolution}+0+${double_block_resolution} ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-2.png
+convert -crop ${block_resolution}x${block_resolution}+0+${doublequad_block_resolution} ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-3.png
+convert -crop ${block_resolution}x${block_resolution}+0+${quad_block_resolution} ./assets/minecraft/textures/block/water_flow.png ./temp/water-flow-4.png
 convert -composite ./temp/water-flow-1.png ./assets/minecraft/textures/block/water_overlay.png ./temp/water-flow-1.png
 convert -composite ./temp/water-flow-0.png ./assets/minecraft/textures/block/water_overlay.png ./temp/water-flow-0.png
 convert -composite ./temp/water-flow-2.png ./assets/minecraft/textures/block/water_overlay.png ./temp/water-flow-2.png
@@ -37,11 +40,11 @@ convert -composite ./temp/water-flow-3.png ./assets/minecraft/textures/block/wat
 convert -composite ./temp/water-flow-4.png ./assets/minecraft/textures/block/water_overlay.png ./temp/water-flow-4.png
 
 # Lava Fix
-convert -crop 32x32+0+0 ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-0.png
-convert -crop 32x32+0+32 ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-1.png
-convert -crop 32x32+0+64 ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-2.png
-convert -crop 32x32+0+96 ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-3.png
-convert -crop 32x32+0+128 ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-4.png
+convert -crop ${block_resolution}x${block_resolution}+0+0 ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-0.png
+convert -crop ${block_resolution}x${block_resolution}+0+${block_resolution} ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-1.png
+convert -crop ${block_resolution}x${block_resolution}+0+${double_block_resolution} ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-2.png
+convert -crop ${block_resolution}x${block_resolution}+0+${doublequad_block_resolution} ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-3.png
+convert -crop ${block_resolution}x${block_resolution}+0+${quad_block_resolution} ./assets/minecraft/textures/block/lava_flow.png ./temp/lava-flow-4.png
 
 
 

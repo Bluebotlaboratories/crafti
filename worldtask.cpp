@@ -480,19 +480,19 @@ void WorldTask::render()
 
     glPopMatrix();
 
-    crosshairPixel(0, 0);
-    crosshairPixel(-1, 0);
-    crosshairPixel(-2, 0);
-    crosshairPixel(0, -1);
-    crosshairPixel(0, -2);
-    crosshairPixel(1, 0);
-    crosshairPixel(2, 0);
-    crosshairPixel(0, 1);
-    crosshairPixel(0, 2);
-
-    //Don't draw the inventory when drawing the background for BlockListTask
+    //Don't draw the inventory or the crosshair when drawing the background for BlockListTask or the CommandTask
     if(draw_inventory)
     {
+        crosshairPixel(0, 0);
+        crosshairPixel(-1, 0);
+        crosshairPixel(-2, 0);
+        crosshairPixel(0, -1);
+        crosshairPixel(0, -2);
+        crosshairPixel(1, 0);
+        crosshairPixel(2, 0);
+        crosshairPixel(0, 1);
+        crosshairPixel(0, 2);
+
         current_inventory.draw(*screen);
         drawStringCenter(global_block_renderer.getName(current_inventory.currentSlot()), 0xFFFF, *screen, SCREEN_WIDTH / 2, SCREEN_HEIGHT - current_inventory.height() - fontHeight());
     }
