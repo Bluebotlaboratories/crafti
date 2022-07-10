@@ -25,7 +25,8 @@ NOTE: Crafti requires a [jailbroken](http://ndless.me/) calculator to run and wi
 
 Textures
 --------
-You can use custom texture packs with Crafti! To learn how to do it and download the Crafti-specific texture format, simply view the following repo:
+You can use custom texture packs with Crafti!  
+To learn how to do it and download the Crafti-specific texture format and converter script, simply view the following repo:
 https://github.com/Bluebotlaboratories/crafti-textures
 
 
