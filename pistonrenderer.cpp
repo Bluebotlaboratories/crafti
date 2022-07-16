@@ -444,7 +444,7 @@ void PistonRenderer::tick(const BLOCK_WDATA block, int local_x, int local_y, int
                 piston_data = piston_data ^ (piston_state << piston_state_bit_shift); // Set pre-existing piston type bits to zero
 
                 // Set the block to the piston body
-                c.setLocalBlock(local_x, local_y, local_z, getBLOCKWDATA(getBLOCK(block), piston_data | poweredProperly << piston_power_state_bit_shift | PISTON_BODY << piston_state_bit_shift));
+                c.changeLocalBlock(local_x, local_y, local_z, getBLOCKWDATA(getBLOCK(block), piston_data | poweredProperly << piston_power_state_bit_shift | PISTON_BODY << piston_state_bit_shift));
                 
                 BLOCK_WDATA block_to_move;
                 VECTOR3 block_to_check;
@@ -472,14 +472,14 @@ void PistonRenderer::tick(const BLOCK_WDATA block, int local_x, int local_y, int
                 }
 
                 // Set the corresponding block to the piston head
-                c.setGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, getBLOCKWDATA(BLOCK_PISTON, side | PISTON_HEAD << piston_state_bit_shift | piston_type << piston_type_bit_shift));
+                c.changeGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, getBLOCKWDATA(BLOCK_PISTON, side | PISTON_HEAD << piston_state_bit_shift | piston_type << piston_type_bit_shift));
             }
         } else {
             // Reset the piston data's piston type
             piston_data = piston_data ^ (piston_state << piston_state_bit_shift); // Set pre-existing piston data bits to zero
 
             // Update the piston type
-            c.setLocalBlock(local_x, local_y, local_z, getBLOCKWDATA(getBLOCK(block), piston_data));
+            c.changeLocalBlock(local_x, local_y, local_z, getBLOCKWDATA(getBLOCK(block), piston_data));
 
             // Remove the piston head only if it is actually extended
             if (piston_state == PISTON_BODY) {
@@ -487,13 +487,13 @@ void PistonRenderer::tick(const BLOCK_WDATA block, int local_x, int local_y, int
                     BLOCK_WDATA blockToPull = c.getGlobalBlockRelative(blockToPushCoordinates.x, blockToPushCoordinates.y, blockToPushCoordinates.z);
 
                     if (isBlockMovable(blockToPull)) {
-                        c.setGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, blockToPull);
+                        c.changeGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, blockToPull);
                         c.changeGlobalBlockRelative(blockToPushCoordinates.x, blockToPushCoordinates.y, blockToPushCoordinates.z, BLOCK_AIR);
                     } else {
-                        c.setGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, BLOCK_AIR);
+                        c.changeGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, BLOCK_AIR);
                     }
                 } else {
-                    c.setGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, BLOCK_AIR);
+                    c.changeGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, BLOCK_AIR);
                 }
             }
         }
@@ -517,11 +517,11 @@ void PistonRenderer::removedBlock(const BLOCK_WDATA block, int local_x, int loca
                 break; // Stop compiler warnings
             case PISTON_BODY:
                 pistonHeadCoordinates = get_piston_block_relative(local_x, local_y, local_z, side, 1);
-                c.setGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, getBLOCK(BLOCK_AIR));
+                c.changeGlobalBlockRelative(pistonHeadCoordinates.x, pistonHeadCoordinates.y, pistonHeadCoordinates.z, getBLOCK(BLOCK_AIR));
                 break;
             case PISTON_HEAD:
                 pistonBodyCoordinates = get_piston_block_relative(local_x, local_y, local_z, side, -1);
-                c.setGlobalBlockRelative(pistonBodyCoordinates.x, pistonBodyCoordinates.y, pistonBodyCoordinates.z, getBLOCK(BLOCK_AIR));
+                c.changeGlobalBlockRelative(pistonBodyCoordinates.x, pistonBodyCoordinates.y, pistonBodyCoordinates.z, getBLOCK(BLOCK_AIR));
                 break;
         }
     }
