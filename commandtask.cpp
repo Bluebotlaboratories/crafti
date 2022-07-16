@@ -20,14 +20,6 @@ std::map<char*, bool> runnableCommands = {
     {"/tp", true}
 };
 
-void CommandTask::logCommandOutput(const char* log) {
-    if (commandOutput.size() == 11) {
-        commandOutput.erase(commandOutput.begin());
-    }
-
-    commandOutput.push_back(log);
-}
-
 
 void CommandTask::executeCommand() {
     // Convert the vector to a char array
