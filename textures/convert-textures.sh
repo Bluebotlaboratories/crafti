@@ -1,4 +1,4 @@
-echo "Resource Pack to Crafti terrain.png Converter"
+echo "Vanilla Resource Pack to Crafti terrain.png Converter"
 echo
 echo
 
