@@ -20,21 +20,22 @@ std::map<char*, bool> runnableCommands = {
     {"/tp", true}
 };
 
-
 void CommandTask::executeCommand() {
     // Convert the vector to a char array
-    char charConverted[command.size()];
+    char charConverted[command.size()-1];
 
     for (size_t i = 0; i < command.size(); i++) {
         charConverted[i] = command[i];
     }
 
-    logCommandOutput(charConverted);
+    logCommandOutput(charConverted, charConverted);
+
+    drawString(charConverted, 0xFFFF, *screen, 300, 300);
 
     if (runnableCommands.find(charConverted) != runnableCommands.end()) {
         //
     } else {
-        logCommandOutput("Error: Command not found");
+        logCommandOutput("Error: Command not found", "");
     }
 }
 
@@ -67,7 +68,7 @@ void CommandTask::render()
     drawString("Commands for Crafti v1.4 [C14DB]", 0xFFFF, *screen, x + background_inner_offset, y + background_inner_offset);
 
     char number[10];
-    snprintf(number, sizeof(number), "%d", background_height/fontHeight());
+    snprintf(number, sizeof(number), "%d", background_height/fontHeight());/*
 
     commandOutput = {
         {command[0], "1"},
@@ -82,6 +83,8 @@ void CommandTask::render()
         {"number", "10"},
         {"of", "11"}
     };
+
+    executeCommand();*/
 
     for (size_t i = 0; i < commandOutput.size(); i++) {
         drawString(commandOutput[i][0], 0xFFFF, *screen, x+background_inner_offset, y + background_inner_offset + (fontHeight() * (i+2)));
