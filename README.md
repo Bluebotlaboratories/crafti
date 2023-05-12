@@ -14,6 +14,10 @@ Screenshots
 ![Crafti Menu](.github/images/crafti_menu.gif)
 ![Crafti List](.github/images/crafti_v1.0_list.png)
 
+## Examples of BareBones Texture Pack, Cake and Pistons
+![Crafti Showcase](.github/images/crafti_showcase.png)
+![Crafti Pistons](.github/images/crafti_pistons.png)
+![Crafti More Pistons](.github/images/crafti_morepistons.png)
 How To Run
 --------
 
