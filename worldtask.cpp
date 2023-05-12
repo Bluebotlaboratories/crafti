@@ -127,7 +127,7 @@ void WorldTask::logic()
         else
             vy = 0;
 
-        vy -= 5;
+        vy -= 10;
 
         in_water = getBLOCK(world.getBlock((x / BLOCK_SIZE).floor(), ((y + eye_pos) / BLOCK_SIZE).floor(), (z / BLOCK_SIZE).floor())) == BLOCK_WATER;
 
@@ -138,7 +138,7 @@ void WorldTask::logic()
 
     if((keyPressed(KEY_NSPIRE_5) || keyPressed(KEY_NSPIRE_SPACE)) && can_jump) // Jump
     {
-        vy = 50;
+        vy = 25;
         can_jump = false;
     }
 
